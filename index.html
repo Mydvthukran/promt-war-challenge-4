@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="StadiumAI 2026 — AI-powered stadium operations and fan experience platform for FIFA World Cup 2026. Real-time crowd intelligence, multilingual AI assistant, accessible navigation, and sustainable event management.">
+  <meta name="keywords" content="FIFA World Cup 2026, AI, Stadium Operations, Crowd Management, Accessibility, Sustainability">
+  <meta name="author" content="StadiumAI">
+  <title>StadiumAI 2026 — FIFA World Cup AI Command Center</title>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏟️</text></svg>">
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════
+       ROLE SELECTION SCREEN
+       ═══════════════════════════════════════ -->
+  <div class="role-screen" id="role-screen">
+    <div id="particles-bg" class="particles-bg"></div>
+
+    <div class="role-screen-title" style="position:relative;z-index:1">
+      <h1 class="gradient-text">StadiumAI 2026</h1>
+      <p>AI-Powered Command Center for FIFA World Cup 2026™</p>
+      <p style="font-size:var(--text-sm);color:var(--color-text-muted);margin-top:var(--space-sm)">Select your role to get started</p>
+    </div>
+
+    <div class="role-cards" style="position:relative;z-index:1">
+      <div class="role-card" data-role="fan" tabindex="0" role="button" aria-label="Select Fan role">
+        <div class="role-emoji">🎉</div>
+        <div class="role-name">Fan</div>
+        <div class="role-desc">Navigate the stadium, find food, get transport info, and chat with AI in your language</div>
+      </div>
+      <div class="role-card" data-role="organizer" tabindex="0" role="button" aria-label="Select Organizer role">
+        <div class="role-emoji">📋</div>
+        <div class="role-name">Organizer</div>
+        <div class="role-desc">Monitor crowd analytics, sustainability metrics, and AI-powered event insights</div>
+      </div>
+      <div class="role-card" data-role="volunteer" tabindex="0" role="button" aria-label="Select Volunteer role">
+        <div class="role-emoji">🙋</div>
+        <div class="role-name">Volunteer</div>
+        <div class="role-desc">View task assignments, assist fans with navigation, and monitor crowd hotspots</div>
+      </div>
+      <div class="role-card" data-role="staff" tabindex="0" role="button" aria-label="Select Staff role">
+        <div class="role-emoji">⚙️</div>
+        <div class="role-name">Staff</div>
+        <div class="role-desc">Operations intelligence, incident response, AI decision support, resource management</div>
+      </div>
+    </div>
+
+    <div style="position:relative;z-index:1;text-align:center">
+      <p style="font-size:var(--text-xs);color:var(--color-text-muted)">🏟️ MetLife Stadium, New York/New Jersey &nbsp;•&nbsp; 🇧🇷 Brazil vs Germany 🇩🇪 &nbsp;•&nbsp; Quarter-Final</p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       MAIN APPLICATION SHELL
+       ═══════════════════════════════════════ -->
+  <div class="app-shell">
+
+    <!-- ── Sidebar ── -->
+    <aside class="sidebar" id="sidebar" aria-label="Main Navigation">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <div class="logo-icon">🏟️</div>
+          <div class="logo-text">
+            <div class="logo-title">StadiumAI</div>
+            <div class="logo-subtitle">FIFA WC 2026</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="role-selector">
+        <label for="role-select">Active Role</label>
+        <select id="role-select">
+          <option value="fan">🎉 Fan</option>
+          <option value="organizer">📋 Organizer</option>
+          <option value="volunteer">🙋 Volunteer</option>
+          <option value="staff">⚙️ Staff</option>
+        </select>
+      </div>
+
+      <nav class="sidebar-nav" id="sidebar-nav" aria-label="Navigation Menu">
+        <!-- Dynamically populated based on role -->
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="live-indicator">
+          <div class="live-dot"></div>
+          <span>System Online — Real-time</span>
+        </div>
+        <div style="font-size:var(--text-xs);color:var(--color-text-muted);margin-top:var(--space-sm)">
+          MetLife Stadium, NJ
+        </div>
+      </div>
+    </aside>
+
+    <!-- ── Main Content ── -->
+    <main class="main-content" id="main-content">
+
+      <!-- Top Header Bar -->
+      <header class="top-header">
+        <div class="header-left">
+          <h2 id="header-title">Dashboard Overview</h2>
+        </div>
+        <div class="header-right">
+          <span class="header-time" id="header-time">--:--:--</span>
+          <span class="badge badge-red" style="animation:pulse-dot 2s infinite">● LIVE</span>
+          <button class="header-btn" id="notifications-btn" aria-label="Notifications" title="Notifications">🔔</button>
+          <button class="header-btn chat-toggle" id="chat-toggle-btn" aria-label="Open AI Assistant" title="AI Assistant">🤖</button>
+        </div>
+      </header>
+
+      <!-- View Container -->
+      <div class="view-container" id="view-container">
+
+        <!-- Overview / Dashboard View -->
+        <div class="view active" id="view-overview">
+          <div id="overview-content">
+            <!-- Dynamically rendered by App.renderOverview() -->
+          </div>
+        </div>
+
+        <!-- Crowd Intelligence View -->
+        <div class="view" id="view-crowd">
+          <div id="crowd-content">
+            <!-- Dynamically rendered by CrowdIntel -->
+          </div>
+        </div>
+
+        <!-- Navigation / Stadium Map View -->
+        <div class="view" id="view-navigation">
+          <div id="navigation-content">
+            <!-- Dynamically rendered by StadiumMap -->
+          </div>
+        </div>
+
+        <!-- Transportation View -->
+        <div class="view" id="view-transport">
+          <div id="transport-content">
+            <!-- Dynamically rendered by Transport -->
+          </div>
+        </div>
+
+        <!-- Accessibility View -->
+        <div class="view" id="view-accessibility">
+          <div id="accessibility-content">
+            <!-- Dynamically rendered by Accessibility -->
+          </div>
+        </div>
+
+        <!-- Sustainability View -->
+        <div class="view" id="view-sustainability">
+          <div id="sustainability-content">
+            <!-- Dynamically rendered by Sustainability -->
+          </div>
+        </div>
+
+        <!-- Operations Center View -->
+        <div class="view" id="view-ops">
+          <div id="ops-content">
+            <!-- Dynamically rendered by OpsDashboard -->
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       AI CHATBOT PANEL
+       ═══════════════════════════════════════ -->
+  <div class="chatbot-overlay" id="chatbot-overlay"></div>
+  <aside class="chatbot-panel" id="chatbot-panel" aria-label="AI Assistant">
+
+    <!-- Chat Header -->
+    <div class="chat-header">
+      <div class="chat-header-info">
+        <div class="chat-avatar">🤖</div>
+        <div>
+          <div class="chat-title">StadiumAI Assistant</div>
+          <div class="chat-status"><div class="live-dot" style="width:6px;height:6px"></div> Online — GenAI Powered</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:var(--space-sm);align-items:center">
+        <select class="chat-lang-selector" id="chat-lang-select" aria-label="Select Language">
+          <option value="en">🇬🇧 English</option>
+          <option value="es">🇪🇸 Español</option>
+          <option value="fr">🇫🇷 Français</option>
+          <option value="ar">🇸🇦 العربية</option>
+          <option value="pt">🇧🇷 Português</option>
+          <option value="de">🇩🇪 Deutsch</option>
+          <option value="ja">🇯🇵 日本語</option>
+          <option value="hi">🇮🇳 हिन्दी</option>
+        </select>
+        <button class="btn btn-icon btn-secondary" id="chat-close-btn" aria-label="Close Chat">✕</button>
+      </div>
+    </div>
+
+    <!-- Chat Messages -->
+    <div class="chat-messages" id="chat-messages" role="log" aria-label="Chat conversation">
+      <!-- Dynamically populated -->
+    </div>
+
+    <!-- Chat Input -->
+    <div class="chat-input-area">
+      <div class="chat-input-wrapper">
+        <input type="text" class="chat-input" id="chat-input" placeholder="Ask me anything about the stadium..." aria-label="Type your message">
+        <button class="chat-send-btn" id="chat-send-btn" aria-label="Send message">➤</button>
+      </div>
+      <div style="text-align:center;margin-top:var(--space-sm)">
+        <span style="font-size:10px;color:var(--color-text-muted)">Powered by GenAI • 8 Languages • Context-Aware</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ═══════════════════════════════════════
+       TOAST NOTIFICATIONS
+       ═══════════════════════════════════════ -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <!-- ═══════════════════════════════════════
+       SCRIPTS
+       ═══════════════════════════════════════ -->
+  <script src="js/data.js"></script>
+  <script src="js/router.js"></script>
+  <script src="js/ai-chatbot.js"></script>
+  <script src="js/crowd-intel.js"></script>
+  <script src="js/stadium-map.js"></script>
+  <script src="js/transport.js"></script>
+  <script src="js/accessibility.js"></script>
+  <script src="js/sustainability.js"></script>
+  <script src="js/ops-dashboard.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>
