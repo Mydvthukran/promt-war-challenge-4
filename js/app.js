@@ -62,9 +62,16 @@ const App = (() => {
   function setupRoleSelection() {
     const roleCards = document.querySelectorAll('.role-card');
     roleCards.forEach(card => {
-      card.addEventListener('click', () => {
+      const handleSelect = () => {
         const role = card.dataset.role;
         selectRole(role);
+      };
+      card.addEventListener('click', handleSelect);
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          handleSelect();
+        }
       });
     });
 
@@ -131,7 +138,7 @@ const App = (() => {
         <div class="nav-section">
           <div class="nav-section-title">${sectionLabels[section] || section}</div>
           ${sectionItems.map(item => `
-            <div class="nav-item" data-view="${item.id}" onclick="Router.navigate('${item.id}')">
+            <div class="nav-item" data-view="${item.id}" role="button" tabindex="0" onclick="Router.navigate('${item.id}')" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); Router.navigate('${item.id}'); }">
               <span class="nav-icon"><i data-lucide="${item.icon}"></i></span>
               <span class="nav-label">${item.label}</span>
             </div>
@@ -372,7 +379,7 @@ const App = (() => {
         <div class="toast-title">${title}</div>
         <div class="toast-message">${message}</div>
       </div>
-      <div class="toast-close" onclick="this.parentElement.classList.add('removing');setTimeout(()=>this.parentElement.remove(),300)"><i data-lucide="x" style="width:14px;height:14px"></i></div>
+      <button class="toast-close" aria-label="Close notification" onclick="this.parentElement.classList.add('removing');setTimeout(()=>this.parentElement.remove(),300)"><i data-lucide="x" style="width:14px;height:14px"></i></button>
     `;
     container.appendChild(toast);
     App.renderIcons(toast);

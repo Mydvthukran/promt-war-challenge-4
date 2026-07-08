@@ -251,7 +251,7 @@ const AIChatbot = (() => {
   }
 
   function formatMarkdown(text) {
-    return text
+    return App.escapeHtml(text)
       .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
       .replace(/\*(.*?)\*/g, '<em>$1</em>')
       .replace(/\n/g, '<br>');
