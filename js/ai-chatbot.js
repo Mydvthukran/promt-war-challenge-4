@@ -11,12 +11,20 @@ const AIChatbot = (() => {
   let messageHistory = [];
   let isTyping = false;
 
+  // Cached DOM elements
+  const DOM = {
+    messages: null,
+    input: null
+  };
+
   const langNames = {
     en: 'English', es: 'Español', fr: 'Français', ar: 'العربية',
     pt: 'Português', de: 'Deutsch', ja: '日本語', hi: 'हिन्दी'
   };
 
   function init() {
+    DOM.messages = document.getElementById('chat-messages');
+    DOM.input = document.getElementById('chat-input');
     setupEventListeners();
     addBotMessage(StadiumData.chatResponses[currentLang]?.greeting || StadiumData.chatResponses['en'].greeting);
     addQuickActions();
@@ -96,8 +104,7 @@ const AIChatbot = (() => {
   }
 
   function addUserMessage(text) {
-    const container = document.getElementById('chat-messages');
-    if (!container) return;
+    if (!DOM.messages) return;
 
     const now = new Date();
     const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -108,15 +115,14 @@ const AIChatbot = (() => {
       <div>${App.escapeHtml(text)}</div>
       <div class="chat-time">${time}</div>
     `;
-    container.appendChild(bubble);
+    DOM.messages.appendChild(bubble);
     scrollToBottom();
 
     messageHistory.push({ role: 'user', text, time });
   }
 
   function addBotMessage(text) {
-    const container = document.getElementById('chat-messages');
-    if (!container) return;
+    if (!DOM.messages) return;
 
     const now = new Date();
     const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -127,7 +133,7 @@ const AIChatbot = (() => {
       <div>${formatMarkdown(text)}</div>
       <div class="chat-time">${time}</div>
     `;
-    container.appendChild(bubble);
+    DOM.messages.appendChild(bubble);
     scrollToBottom();
 
     messageHistory.push({ role: 'bot', text, time });
@@ -135,8 +141,7 @@ const AIChatbot = (() => {
 
   function typeMessage(text) {
     isTyping = true;
-    const container = document.getElementById('chat-messages');
-    if (!container) return;
+    if (!DOM.messages) return;
 
     const now = new Date();
     const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -150,7 +155,7 @@ const AIChatbot = (() => {
 
     bubble.appendChild(contentDiv);
     bubble.appendChild(timeDiv);
-    container.appendChild(bubble);
+    DOM.messages.appendChild(bubble);
 
     // Type out the message character by character (fast)
     const formatted = formatMarkdown(text);
@@ -177,8 +182,7 @@ const AIChatbot = (() => {
   }
 
   function showTypingIndicator() {
-    const container = document.getElementById('chat-messages');
-    if (!container) return;
+    if (!DOM.messages) return;
 
     const indicator = document.createElement('div');
     indicator.className = 'chat-bubble bot';
@@ -188,7 +192,7 @@ const AIChatbot = (() => {
         <span></span><span></span><span></span>
       </div>
     `;
-    container.appendChild(indicator);
+    DOM.messages.appendChild(indicator);
     scrollToBottom();
   }
 
@@ -198,11 +202,10 @@ const AIChatbot = (() => {
   }
 
   function addQuickActions() {
-    const container = document.getElementById('chat-messages');
-    if (!container) return;
+    if (!DOM.messages) return;
 
     // Remove existing quick actions
-    const existing = container.querySelector('.chat-quick-actions');
+    const existing = DOM.messages.querySelector('.chat-quick-actions');
     if (existing) existing.remove();
 
     const actions = [
@@ -222,9 +225,8 @@ const AIChatbot = (() => {
       btn.className = 'quick-action-btn';
       btn.innerHTML = action.text;
       btn.addEventListener('click', () => {
-        const input = document.getElementById('chat-input');
-        if (input) {
-          input.value = action.query;
+        if (DOM.input) {
+          DOM.input.value = action.query;
           sendMessage();
         }
         wrapper.remove();
@@ -232,21 +234,19 @@ const AIChatbot = (() => {
       wrapper.appendChild(btn);
     });
 
-    container.appendChild(wrapper);
+    DOM.messages.appendChild(wrapper);
     scrollToBottom();
     App.renderIcons(wrapper);
   }
 
   function clearChat() {
-    const container = document.getElementById('chat-messages');
-    if (container) container.innerHTML = '';
+    if (DOM.messages) DOM.messages.innerHTML = '';
     messageHistory = [];
   }
 
   function scrollToBottom() {
-    const container = document.getElementById('chat-messages');
-    if (container) {
-      container.scrollTop = container.scrollHeight;
+    if (DOM.messages) {
+      DOM.messages.scrollTop = DOM.messages.scrollHeight;
     }
   }
 

@@ -261,6 +261,7 @@ const CrowdIntel = (() => {
   }
 
   function startLiveUpdates() {
+    if (updateInterval) clearInterval(updateInterval);
     updateInterval = setInterval(() => {
       if (Router.getCurrentView() === 'crowd') {
         renderCrowdView();

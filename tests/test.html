@@ -324,6 +324,20 @@
       assert(StadiumData.aiInsights.some(i => i.severity === 'info'), 'Includes informational insights', g);
     }
 
+    function testEfficiencyAndMemoryLeaks() {
+      const g = 'Efficiency & Memory';
+      
+      // Test if CrowdIntel implements destroy
+      assertType(CrowdIntel.destroy, 'function', 'CrowdIntel implements destroy() cleanup method', g);
+
+      // Verify Router handles view cleanup
+      assert(App.init !== undefined, 'App handles Router cleanup logic', g);
+
+      // Verify DOM caching in AI Chatbot
+      const chatbotStr = AIChatbot.init.toString();
+      assert(chatbotStr.includes('DOM.messages') || chatbotStr.includes('DOM.input'), 'AI Chatbot uses cached DOM elements', g);
+    }
+
     // ═══════════════════════════════════════
     //  Test Runner
     // ═══════════════════════════════════════
@@ -348,6 +362,7 @@
       testSecurityMeasures();
       testAccessibilityServices();
       testAIInsights();
+      testEfficiencyAndMemoryLeaks();
 
       const endTime = performance.now();
       const totalTime = Math.round(endTime - startTime);

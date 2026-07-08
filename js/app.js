@@ -156,7 +156,14 @@ const App = (() => {
     renderOverview();
 
     // Init modules (they render lazily when their view is activated)
-    Router.onChange((viewId) => {
+    Router.onChange((viewId, prevView) => {
+      // Cleanup previous view to prevent memory leaks
+      switch (prevView) {
+        case 'crowd':
+          if (typeof CrowdIntel !== 'undefined' && CrowdIntel.destroy) CrowdIntel.destroy();
+          break;
+      }
+
       switch (viewId) {
         case 'overview':
           renderOverview();
