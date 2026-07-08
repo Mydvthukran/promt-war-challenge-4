@@ -53,24 +53,24 @@ const StadiumData = (() => {
 
   // ── Transport Options ──
   const transportModes = [
-    { id: 'metro', name: 'Metro / Subway', icon: '🚇', color: '#3B82F6', avgTime: 25, carbonPerKm: 0.041 },
-    { id: 'bus', name: 'Shuttle Bus', icon: '🚌', color: '#10B981', avgTime: 35, carbonPerKm: 0.089 },
-    { id: 'rideshare', name: 'Rideshare', icon: '🚗', color: '#F59E0B', avgTime: 20, carbonPerKm: 0.192 },
-    { id: 'bicycle', name: 'Bike Share', icon: '🚲', color: '#00D4AA', avgTime: 40, carbonPerKm: 0.0 },
-    { id: 'walk', name: 'Walking', icon: '🚶', color: '#A855F7', avgTime: 55, carbonPerKm: 0.0 },
-    { id: 'parking', name: 'Self Drive', icon: '🅿️', color: '#FF3366', avgTime: 15, carbonPerKm: 0.210 },
+    { id: 'metro', name: 'Metro / Subway', icon: '<i data-lucide="train" style="width:20px;height:20px"></i>', color: '#3B82F6', avgTime: 25, carbonPerKm: 0.041 },
+    { id: 'bus', name: 'Shuttle Bus', icon: '<i data-lucide="bus" style="width:20px;height:20px"></i>', color: '#10B981', avgTime: 35, carbonPerKm: 0.089 },
+    { id: 'rideshare', name: 'Rideshare', icon: '<i data-lucide="car" style="width:20px;height:20px"></i>', color: '#F59E0B', avgTime: 20, carbonPerKm: 0.192 },
+    { id: 'bicycle', name: 'Bike Share', icon: '<i data-lucide="bike" style="width:20px;height:20px"></i>', color: '#00D4AA', avgTime: 40, carbonPerKm: 0.0 },
+    { id: 'walk', name: 'Walking', icon: '<i data-lucide="footprints" style="width:20px;height:20px"></i>', color: '#A855F7', avgTime: 55, carbonPerKm: 0.0 },
+    { id: 'parking', name: 'Self Drive', icon: '<i data-lucide="parking-circle" style="width:20px;height:20px"></i>', color: '#FF3366', avgTime: 15, carbonPerKm: 0.210 },
   ];
 
   // ── Accessibility Services ──
   const accessibilityServices = [
-    { id: 'wheelchair', name: 'Wheelchair Accessible Seating', icon: '♿', status: 'available', count: 450, description: 'Designated wheelchair spaces with companion seating across all levels' },
-    { id: 'sensory', name: 'Sensory Rooms', icon: '🧠', status: 'available', count: 4, description: 'Quiet, low-stimulation rooms for neurodivergent fans and those with sensory needs' },
-    { id: 'audio_desc', name: 'Audio Description', icon: '🎧', status: 'active', count: null, description: 'Live audio description of match action for visually impaired fans' },
-    { id: 'sign_lang', name: 'Sign Language Services', icon: '🤟', status: 'available', count: 8, description: 'Sign language interpreters at key service points and info desks' },
-    { id: 'mobility', name: 'Mobility Assistance', icon: '🦽', status: 'available', count: 30, description: 'Electric carts and volunteer escorts for mobility-impaired fans' },
-    { id: 'guide_dogs', name: 'Guide Dog Relief', icon: '🦮', status: 'available', count: 3, description: 'Designated relief areas for service animals with water stations' },
-    { id: 'braille', name: 'Braille & Tactile Maps', icon: '📋', status: 'available', count: 12, description: 'Tactile stadium maps and braille information at entry points' },
-    { id: 'hearing_loop', name: 'Hearing Loop System', icon: '👂', status: 'active', count: null, description: 'Induction loop system in main stands for hearing aid users' },
+    { id: 'wheelchair', name: 'Wheelchair Accessible Seating', icon: '<i data-lucide="accessibility" style="width:20px;height:20px"></i>', status: 'available', count: 450, description: 'Designated wheelchair spaces with companion seating across all levels' },
+    { id: 'sensory', name: 'Sensory Rooms', icon: '<i data-lucide="brain" style="width:20px;height:20px"></i>', status: 'available', count: 4, description: 'Quiet, low-stimulation rooms for neurodivergent fans and those with sensory needs' },
+    { id: 'audio_desc', name: 'Audio Description', icon: '<i data-lucide="headphones" style="width:20px;height:20px"></i>', status: 'active', count: null, description: 'Live audio description of match action for visually impaired fans' },
+    { id: 'sign_lang', name: 'Sign Language Services', icon: '<i data-lucide="hand-metal" style="width:20px;height:20px"></i>', status: 'available', count: 8, description: 'Sign language interpreters at key service points and info desks' },
+    { id: 'mobility', name: 'Mobility Assistance', icon: '<i data-lucide="accessibility" style="width:20px;height:20px"></i>', status: 'available', count: 30, description: 'Electric carts and volunteer escorts for mobility-impaired fans' },
+    { id: 'guide_dogs', name: 'Guide Dog Relief', icon: '<i data-lucide="dog" style="width:20px;height:20px"></i>', status: 'available', count: 3, description: 'Designated relief areas for service animals with water stations' },
+    { id: 'braille', name: 'Braille & Tactile Maps', icon: '<i data-lucide="clipboard" style="width:20px;height:20px"></i>', status: 'available', count: 12, description: 'Tactile stadium maps and braille information at entry points' },
+    { id: 'hearing_loop', name: 'Hearing Loop System', icon: '<i data-lucide="ear" style="width:20px;height:20px"></i>', status: 'active', count: null, description: 'Induction loop system in main stands for hearing aid users' },
   ];
 
   // ── Sustainability Metrics ──

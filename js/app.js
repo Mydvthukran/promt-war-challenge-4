@@ -8,36 +8,36 @@ const App = (() => {
 
   const roleNavItems = {
     fan: [
-      { id: 'overview', icon: '🏠', label: 'Dashboard', section: 'main' },
-      { id: 'navigation', icon: '🗺️', label: 'Stadium Navigation', section: 'main' },
-      { id: 'transport', icon: '🚗', label: 'Transportation', section: 'main' },
-      { id: 'accessibility', icon: '♿', label: 'Accessibility', section: 'main' },
-      { id: 'sustainability', icon: '🌱', label: 'Go Green', section: 'explore' },
+      { id: 'overview', icon: 'home', label: 'Dashboard', section: 'main' },
+      { id: 'navigation', icon: 'map', label: 'Stadium Navigation', section: 'main' },
+      { id: 'transport', icon: 'car', label: 'Transportation', section: 'main' },
+      { id: 'accessibility', icon: 'accessibility', label: 'Accessibility', section: 'main' },
+      { id: 'sustainability', icon: 'leaf', label: 'Go Green', section: 'explore' },
     ],
     organizer: [
-      { id: 'overview', icon: '🏠', label: 'Dashboard', section: 'main' },
-      { id: 'crowd', icon: '📊', label: 'Crowd Intelligence', section: 'main' },
-      { id: 'ops', icon: '🧠', label: 'Operations Center', section: 'main' },
-      { id: 'navigation', icon: '🗺️', label: 'Stadium Map', section: 'main' },
-      { id: 'transport', icon: '🚗', label: 'Transport Hub', section: 'analytics' },
-      { id: 'sustainability', icon: '🌱', label: 'Sustainability', section: 'analytics' },
-      { id: 'accessibility', icon: '♿', label: 'Accessibility', section: 'analytics' },
+      { id: 'overview', icon: 'home', label: 'Dashboard', section: 'main' },
+      { id: 'crowd', icon: 'users', label: 'Crowd Intelligence', section: 'main' },
+      { id: 'ops', icon: 'activity', label: 'Operations Center', section: 'main' },
+      { id: 'navigation', icon: 'map', label: 'Stadium Map', section: 'main' },
+      { id: 'transport', icon: 'car', label: 'Transport Hub', section: 'analytics' },
+      { id: 'sustainability', icon: 'leaf', label: 'Sustainability', section: 'analytics' },
+      { id: 'accessibility', icon: 'accessibility', label: 'Accessibility', section: 'analytics' },
     ],
     volunteer: [
-      { id: 'overview', icon: '🏠', label: 'Dashboard', section: 'main' },
-      { id: 'navigation', icon: '🗺️', label: 'Stadium Map', section: 'main' },
-      { id: 'crowd', icon: '📊', label: 'Crowd Status', section: 'main' },
-      { id: 'accessibility', icon: '♿', label: 'Accessibility', section: 'assist' },
-      { id: 'transport', icon: '🚗', label: 'Transport Info', section: 'assist' },
+      { id: 'overview', icon: 'home', label: 'Dashboard', section: 'main' },
+      { id: 'navigation', icon: 'map', label: 'Stadium Map', section: 'main' },
+      { id: 'crowd', icon: 'users', label: 'Crowd Status', section: 'main' },
+      { id: 'accessibility', icon: 'accessibility', label: 'Accessibility', section: 'assist' },
+      { id: 'transport', icon: 'car', label: 'Transport Info', section: 'assist' },
     ],
     staff: [
-      { id: 'overview', icon: '🏠', label: 'Dashboard', section: 'main' },
-      { id: 'ops', icon: '🧠', label: 'Operations Center', section: 'main' },
-      { id: 'crowd', icon: '📊', label: 'Crowd Intelligence', section: 'main' },
-      { id: 'navigation', icon: '🗺️', label: 'Stadium Map', section: 'operations' },
-      { id: 'transport', icon: '🚗', label: 'Transport Ops', section: 'operations' },
-      { id: 'sustainability', icon: '🌱', label: 'Sustainability', section: 'operations' },
-      { id: 'accessibility', icon: '♿', label: 'Accessibility', section: 'operations' },
+      { id: 'overview', icon: 'home', label: 'Dashboard', section: 'main' },
+      { id: 'ops', icon: 'activity', label: 'Operations Center', section: 'main' },
+      { id: 'crowd', icon: 'users', label: 'Crowd Intelligence', section: 'main' },
+      { id: 'navigation', icon: 'map', label: 'Stadium Map', section: 'operations' },
+      { id: 'transport', icon: 'car', label: 'Transport Ops', section: 'operations' },
+      { id: 'sustainability', icon: 'leaf', label: 'Sustainability', section: 'operations' },
+      { id: 'accessibility', icon: 'accessibility', label: 'Accessibility', section: 'operations' },
     ],
   };
 
@@ -130,7 +130,7 @@ const App = (() => {
           <div class="nav-section-title">${sectionLabels[section] || section}</div>
           ${sectionItems.map(item => `
             <div class="nav-item" data-view="${item.id}" onclick="Router.navigate('${item.id}')">
-              <span class="nav-icon">${item.icon}</span>
+              <span class="nav-icon"><i data-lucide="${item.icon}"></i></span>
               <span class="nav-label">${item.label}</span>
             </div>
           `).join('')}
@@ -139,6 +139,7 @@ const App = (() => {
     }
 
     navContainer.innerHTML = html;
+    if (window.lucide) lucide.createIcons();
   }
 
   function initModules() {
@@ -195,7 +196,7 @@ const App = (() => {
       <!-- Live Match -->
       <div class="section-header">
         <div class="section-title">
-          <span class="section-icon">⚽</span>
+          <span class="section-icon"><i data-lucide="trophy"></i></span>
           <h2>Live Match</h2>
         </div>
         <span class="badge badge-red" style="animation:pulse-dot 2s infinite">● LIVE</span>
@@ -224,28 +225,28 @@ const App = (() => {
       <div class="dashboard-grid grid-cols-4 stagger-children" style="margin-bottom:var(--space-2xl)">
         <div class="card card-accent-teal animate-fade-in-up">
           <div class="stat-widget">
-            <div class="stat-icon teal">🏟️</div>
+            <div class="stat-icon teal"><i data-lucide="building"></i></div>
             <div class="stat-value">${(totalPeople / 1000).toFixed(1)}k</div>
             <div class="stat-label">In Stadium</div>
           </div>
         </div>
         <div class="card card-accent-gold animate-fade-in-up">
           <div class="stat-widget">
-            <div class="stat-icon gold">⚡</div>
+            <div class="stat-icon gold"><i data-lucide="zap"></i></div>
             <div class="stat-value">${highZones}</div>
             <div class="stat-label">High Density Zones</div>
           </div>
         </div>
         <div class="card card-accent-blue animate-fade-in-up">
           <div class="stat-widget">
-            <div class="stat-icon blue">⭐</div>
+            <div class="stat-icon blue"><i data-lucide="star"></i></div>
             <div class="stat-value">${kpis.customerSatisfaction}</div>
             <div class="stat-label">Fan Rating</div>
           </div>
         </div>
         <div class="card animate-fade-in-up">
           <div class="stat-widget">
-            <div class="stat-icon purple">🌱</div>
+            <div class="stat-icon purple"><i data-lucide="leaf"></i></div>
             <div class="stat-value">${StadiumData.randomBetween(80, 95)}</div>
             <div class="stat-label">Eco Score</div>
           </div>
@@ -257,24 +258,24 @@ const App = (() => {
         <!-- AI Highlights -->
         <div class="card">
           <div class="card-header">
-            <div class="card-title">🧠 AI Highlights</div>
+            <div class="card-title"><i data-lucide="brain" style="display:inline-block;vertical-align:text-bottom;width:20px;height:20px"></i> AI Highlights</div>
             <span class="badge badge-teal">GenAI</span>
           </div>
           <div class="card-body" style="display:flex;flex-direction:column;gap:var(--space-md)">
             <div class="ai-card">
-              <div class="ai-card-label">🧠 Real-time insight</div>
+              <div class="ai-card-label"><i data-lucide="brain" style="width:14px;height:14px;display:inline-block;vertical-align:middle"></i> Real-time insight</div>
               <div class="ai-card-title">Crowd Flow Prediction</div>
               <div class="ai-card-text">Based on match dynamics, AI predicts a 35% surge in concourse movement at half-time. Food courts should prepare for peak demand in ~12 minutes.</div>
             </div>
             <div class="alert-card alert-info">
-              <div class="alert-icon">💡</div>
+              <div class="alert-icon"><i data-lucide="lightbulb"></i></div>
               <div class="alert-content">
                 <div class="alert-title">AI Suggestion</div>
                 <div class="alert-message">Metro Line A will be the fastest route post-match. Pre-book your rideshare now to avoid 2.5x surge pricing.</div>
               </div>
             </div>
             <div class="alert-card alert-success">
-              <div class="alert-icon">🌱</div>
+              <div class="alert-icon"><i data-lucide="leaf"></i></div>
               <div class="alert-content">
                 <div class="alert-title">Sustainability Update</div>
                 <div class="alert-message">62% of fans used green transport today! Stadium is on track for its best sustainability score this tournament.</div>
@@ -286,7 +287,7 @@ const App = (() => {
         <!-- Upcoming Matches -->
         <div class="card">
           <div class="card-header">
-            <div class="card-title">📅 Match Schedule</div>
+            <div class="card-title"><i data-lucide="calendar" style="display:inline-block;vertical-align:text-bottom;width:20px;height:20px"></i> Match Schedule</div>
           </div>
           <div class="card-body" style="display:flex;flex-direction:column;gap:var(--space-md)">
             ${StadiumData.matches.map(m => {
@@ -321,6 +322,7 @@ const App = (() => {
         </div>
       </div>
     `;
+    if (window.lucide) lucide.createIcons();
   }
 
   function startClock() {
@@ -358,19 +360,20 @@ const App = (() => {
     const container = document.getElementById('toast-container');
     if (!container) return;
 
-    const icons = { info: '💡', success: '✅', warning: '⚠️', danger: '🚨' };
+    const icons = { info: 'lightbulb', success: 'check-circle', warning: 'alert-triangle', danger: 'alert-octagon' };
 
     const toast = document.createElement('div');
     toast.className = 'toast';
     toast.innerHTML = `
-      <div class="toast-icon">${icons[type] || '💡'}</div>
+      <div class="toast-icon"><i data-lucide="${icons[type] || 'lightbulb'}"></i></div>
       <div class="toast-body">
         <div class="toast-title">${title}</div>
         <div class="toast-message">${message}</div>
       </div>
-      <div class="toast-close" onclick="this.parentElement.classList.add('removing');setTimeout(()=>this.parentElement.remove(),300)">✕</div>
+      <div class="toast-close" onclick="this.parentElement.classList.add('removing');setTimeout(()=>this.parentElement.remove(),300)"><i data-lucide="x" style="width:14px;height:14px"></i></div>
     `;
     container.appendChild(toast);
+    if (window.lucide) lucide.createIcons({root: toast});
 
     // Auto remove after 5 seconds
     setTimeout(() => {

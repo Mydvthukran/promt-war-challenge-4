@@ -16,7 +16,7 @@ const StadiumMap = (() => {
 
     container.innerHTML = `
       <div class="welcome-banner">
-        <div class="welcome-title">🗺️ AI-Powered Stadium Navigation</div>
+        <div class="welcome-title"><i data-lucide="map" style="display:inline-block;vertical-align:text-bottom;width:28px;height:28px"></i> AI-Powered Stadium Navigation</div>
         <div class="welcome-subtitle">Get intelligent directions based on real-time crowd density. The AI will route you through the least congested paths to your destination.</div>
       </div>
 
@@ -24,10 +24,10 @@ const StadiumMap = (() => {
         <!-- Interactive Map -->
         <div class="card">
           <div class="card-header">
-            <div class="card-title">🏟️ Interactive Stadium Map</div>
+            <div class="card-title"><i data-lucide="building" style="display:inline-block;vertical-align:text-bottom;width:20px;height:20px"></i> Interactive Stadium Map</div>
             <div class="section-actions">
-              <button class="btn btn-sm btn-secondary" onclick="StadiumMap.togglePOI()">📍 Toggle POIs</button>
-              <button class="btn btn-sm btn-primary" onclick="StadiumMap.findRoute()">🧭 Find Route</button>
+              <button class="btn btn-sm btn-secondary" onclick="StadiumMap.togglePOI()"><i data-lucide="map-pin" style="width:16px;height:16px;display:inline-block;vertical-align:text-bottom"></i> Toggle POIs</button>
+              <button class="btn btn-sm btn-primary" onclick="StadiumMap.findRoute()"><i data-lucide="compass" style="width:16px;height:16px;display:inline-block;vertical-align:text-bottom"></i> Find Route</button>
             </div>
           </div>
           <div class="card-body">
@@ -41,13 +41,13 @@ const StadiumMap = (() => {
         <div style="display:flex;flex-direction:column;gap:var(--space-xl)">
           <!-- AI Route Suggestion -->
           <div class="ai-card">
-            <div class="ai-card-label">🧠 AI Route</div>
+            <div class="ai-card-label"><i data-lucide="brain" style="width:14px;height:14px;display:inline-block;vertical-align:middle"></i> AI Route</div>
             <div class="ai-card-title">Recommended Path to Your Seat</div>
             <div class="ai-card-text">
               Section 214, Row F → Enter via <strong>Gate C (East)</strong><br><br>
-              ✅ 42% less crowded than Gate A<br>
-              🕐 Estimated walk: 4 min<br>
-              ♿ Elevator available at Level 2 junction<br><br>
+              <i data-lucide="check-circle" style="color:var(--color-success);width:16px;height:16px;display:inline-block;vertical-align:text-bottom"></i> 42% less crowded than Gate A<br>
+              <i data-lucide="clock" style="color:var(--color-text-secondary);width:16px;height:16px;display:inline-block;vertical-align:text-bottom"></i> Estimated walk: 4 min<br>
+              <i data-lucide="accessibility" style="color:var(--color-blue);width:16px;height:16px;display:inline-block;vertical-align:text-bottom"></i> Elevator available at Level 2 junction<br><br>
               <em>Route avoids Concourse A (currently at 87% capacity)</em>
             </div>
           </div>
@@ -55,31 +55,31 @@ const StadiumMap = (() => {
           <!-- Points of Interest -->
           <div class="card">
             <div class="card-header">
-              <div class="card-title">📍 Nearby Points of Interest</div>
+              <div class="card-title"><i data-lucide="map-pin" style="display:inline-block;vertical-align:text-bottom;width:20px;height:20px"></i> Nearby Points of Interest</div>
             </div>
             <div class="card-body">
               <div class="metric-row">
-                <div class="metric-label">🍔 Food Court</div>
+                <div class="metric-label"><i data-lucide="pizza" style="width:16px;height:16px;display:inline-block;vertical-align:text-bottom"></i> Food Court</div>
                 <div class="metric-value text-teal">120m</div>
               </div>
               <div class="metric-row">
-                <div class="metric-label">🚻 Restroom</div>
+                <div class="metric-label"><i data-lucide="user" style="width:16px;height:16px;display:inline-block;vertical-align:text-bottom"></i> Restroom</div>
                 <div class="metric-value text-teal">45m</div>
               </div>
               <div class="metric-row">
-                <div class="metric-label">🏥 Medical</div>
+                <div class="metric-label"><i data-lucide="heart-pulse" style="width:16px;height:16px;display:inline-block;vertical-align:text-bottom"></i> Medical</div>
                 <div class="metric-value text-gold">250m</div>
               </div>
               <div class="metric-row">
-                <div class="metric-label">♿ Elevator</div>
+                <div class="metric-label"><i data-lucide="accessibility" style="width:16px;height:16px;display:inline-block;vertical-align:text-bottom"></i> Elevator</div>
                 <div class="metric-value text-teal">80m</div>
               </div>
               <div class="metric-row">
-                <div class="metric-label">🎒 Lost & Found</div>
+                <div class="metric-label"><i data-lucide="briefcase" style="width:16px;height:16px;display:inline-block;vertical-align:text-bottom"></i> Lost & Found</div>
                 <div class="metric-value text-gold">310m</div>
               </div>
               <div class="metric-row">
-                <div class="metric-label">🚪 Nearest Exit</div>
+                <div class="metric-label"><i data-lucide="door-open" style="width:16px;height:16px;display:inline-block;vertical-align:text-bottom"></i> Nearest Exit</div>
                 <div class="metric-value text-teal">60m</div>
               </div>
             </div>
@@ -88,16 +88,17 @@ const StadiumMap = (() => {
           <!-- Seat Finder -->
           <div class="card">
             <div class="card-header">
-              <div class="card-title">💺 Quick Seat Finder</div>
+              <div class="card-title"><i data-lucide="armchair" style="width:20px;height:20px;display:inline-block;vertical-align:text-bottom"></i> Quick Seat Finder</div>
             </div>
             <div class="card-body">
               <input type="text" placeholder="Enter Section-Row-Seat (e.g. 214-F-12)" style="width:100%;margin-bottom:var(--space-md)">
-              <button class="btn btn-primary" style="width:100%" onclick="StadiumMap.findRoute()">🧭 Navigate to Seat</button>
+              <button class="btn btn-primary" style="width:100%" onclick="StadiumMap.findRoute()"><i data-lucide="compass" style="width:16px;height:16px;display:inline-block;vertical-align:text-bottom"></i> Navigate to Seat</button>
             </div>
           </div>
         </div>
       </div>
     `;
+    if (window.lucide) lucide.createIcons();
   }
 
   function generateStadiumSVG(crowdData) {
@@ -168,7 +169,7 @@ const StadiumMap = (() => {
         <line x1="400" y1="140" x2="400" y2="360" stroke="rgba(0,212,170,0.2)" stroke-width="1"/>
         <circle cx="400" cy="250" r="30" fill="none" stroke="rgba(0,212,170,0.2)" stroke-width="1"/>
         <circle cx="400" cy="250" r="3" fill="rgba(0,212,170,0.5)"/>
-        <text x="400" y="254" text-anchor="middle" fill="rgba(0,212,170,0.4)" font-size="12" font-family="Inter" font-weight="600">⚽ PITCH</text>
+        <text x="400" y="254" text-anchor="middle" fill="rgba(0,212,170,0.4)" font-size="12" font-family="Inter" font-weight="600">PITCH</text>
 
         <!-- VIP -->
         <rect x="520" y="115" width="65" height="40" rx="6" 
@@ -181,32 +182,32 @@ const StadiumMap = (() => {
         <g filter="url(#glow)" id="poi-markers">
           <!-- Food -->
           <circle cx="500" cy="400" r="10" fill="rgba(255,184,0,0.9)"/>
-          <text x="500" y="404" text-anchor="middle" font-size="10">🍔</text>
+          <text x="500" y="404" text-anchor="middle" fill="white" font-size="10" font-family="Inter" font-weight="bold">F</text>
           <text x="500" y="420" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="8" font-family="Inter">Food</text>
 
           <!-- Medical -->
           <circle cx="200" cy="80" r="10" fill="rgba(255,51,102,0.9)"/>
-          <text x="200" y="84" text-anchor="middle" font-size="10">🏥</text>
+          <text x="200" y="84" text-anchor="middle" fill="white" font-size="10" font-family="Inter" font-weight="bold">+</text>
           <text x="200" y="100" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="8" font-family="Inter">Medical</text>
 
           <!-- Restroom -->
           <circle cx="300" cy="400" r="10" fill="rgba(59,130,246,0.9)"/>
-          <text x="300" y="404" text-anchor="middle" font-size="10">🚻</text>
+          <text x="300" y="404" text-anchor="middle" fill="white" font-size="10" font-family="Inter" font-weight="bold">W</text>
           <text x="300" y="420" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="8" font-family="Inter">WC</text>
 
           <!-- Exit -->
           <circle cx="400" cy="475" r="10" fill="rgba(16,185,129,0.9)"/>
-          <text x="400" y="479" text-anchor="middle" font-size="10">🚪</text>
+          <text x="400" y="479" text-anchor="middle" fill="white" font-size="10" font-family="Inter" font-weight="bold">E</text>
           <text x="400" y="493" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="8" font-family="Inter">Main Exit</text>
 
           <!-- Accessibility -->
           <circle cx="640" cy="300" r="10" fill="rgba(168,85,247,0.9)"/>
-          <text x="640" y="304" text-anchor="middle" font-size="10">♿</text>
+          <text x="640" y="304" text-anchor="middle" fill="white" font-size="10" font-family="Inter" font-weight="bold">A</text>
           <text x="640" y="320" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="8" font-family="Inter">Access</text>
 
           <!-- Info -->
           <circle cx="250" cy="310" r="10" fill="rgba(0,212,170,0.9)"/>
-          <text x="250" y="314" text-anchor="middle" font-size="10">ℹ️</text>
+          <text x="250" y="314" text-anchor="middle" fill="white" font-size="10" font-family="Inter" font-weight="bold">i</text>
           <text x="250" y="330" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="8" font-family="Inter">Info</text>
         </g>
 
@@ -229,7 +230,7 @@ const StadiumMap = (() => {
 
   function findRoute() {
     // Show AI route toast
-    App.showToast('🧭 AI Route Calculated', 'Optimal path via Gate C → Concourse B → Section 214. Estimated time: 4 minutes.', 'success');
+    App.showToast('<i data-lucide="compass" style="width:16px;height:16px;display:inline-block;vertical-align:text-bottom"></i> AI Route Calculated', 'Optimal path via Gate C → Concourse B → Section 214. Estimated time: 4 minutes.', 'success');
   }
 
   return { init, renderMapView, togglePOI, findRoute };

@@ -204,12 +204,12 @@ const AIChatbot = (() => {
     if (existing) existing.remove();
 
     const actions = [
-      { text: '🗺️ Navigate', query: 'navigate to my seat' },
-      { text: '⚽ Match Info', query: 'match information' },
-      { text: '🍽️ Food', query: 'food options' },
-      { text: '🚗 Transport', query: 'transportation home' },
-      { text: '♿ Accessibility', query: 'accessibility services' },
-      { text: '🌱 Go Green', query: 'sustainability tips' },
+      { text: '<i data-lucide="map" style="width:14px;height:14px;display:inline-block;vertical-align:middle;margin-right:4px"></i> Navigate', query: 'navigate to my seat' },
+      { text: '<i data-lucide="trophy" style="width:14px;height:14px;display:inline-block;vertical-align:middle;margin-right:4px"></i> Match Info', query: 'match information' },
+      { text: '<i data-lucide="utensils" style="width:14px;height:14px;display:inline-block;vertical-align:middle;margin-right:4px"></i> Food', query: 'food options' },
+      { text: '<i data-lucide="car" style="width:14px;height:14px;display:inline-block;vertical-align:middle;margin-right:4px"></i> Transport', query: 'transportation home' },
+      { text: '<i data-lucide="accessibility" style="width:14px;height:14px;display:inline-block;vertical-align:middle;margin-right:4px"></i> Accessibility', query: 'accessibility services' },
+      { text: '<i data-lucide="leaf" style="width:14px;height:14px;display:inline-block;vertical-align:middle;margin-right:4px"></i> Go Green', query: 'sustainability tips' },
     ];
 
     const wrapper = document.createElement('div');
@@ -218,7 +218,7 @@ const AIChatbot = (() => {
     actions.forEach(action => {
       const btn = document.createElement('button');
       btn.className = 'quick-action-btn';
-      btn.textContent = action.text;
+      btn.innerHTML = action.text;
       btn.addEventListener('click', () => {
         const input = document.getElementById('chat-input');
         if (input) {
@@ -232,6 +232,7 @@ const AIChatbot = (() => {
 
     container.appendChild(wrapper);
     scrollToBottom();
+    if (window.lucide) lucide.createIcons();
   }
 
   function clearChat() {

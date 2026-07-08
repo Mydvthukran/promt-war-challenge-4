@@ -20,7 +20,7 @@ const OpsDashboard = (() => {
       <div class="dashboard-grid grid-cols-4" style="margin-bottom:var(--space-xl)">
         <div class="card card-accent-teal">
           <div class="stat-widget">
-            <div class="stat-icon teal">🏟️</div>
+            <div class="stat-icon teal"><i data-lucide="building"></i></div>
             <div class="stat-value">${(kpis.totalAttendance / 1000).toFixed(1)}k</div>
             <div class="stat-label">Total Attendance</div>
             <span class="stat-change positive">↑ 96% capacity</span>
@@ -28,7 +28,7 @@ const OpsDashboard = (() => {
         </div>
         <div class="card card-accent-gold">
           <div class="stat-widget">
-            <div class="stat-icon gold">⚡</div>
+            <div class="stat-icon gold"><i data-lucide="zap"></i></div>
             <div class="stat-value">${kpis.gateProcessingRate}</div>
             <div class="stat-label">Gate Processing/min</div>
             <span class="stat-change positive">↑ Above target</span>
@@ -36,7 +36,7 @@ const OpsDashboard = (() => {
         </div>
         <div class="card card-accent-blue">
           <div class="stat-widget">
-            <div class="stat-icon blue">👥</div>
+            <div class="stat-icon blue"><i data-lucide="users"></i></div>
             <div class="stat-value">${kpis.staffDeployed}</div>
             <div class="stat-label">Staff Deployed</div>
             <span class="stat-change positive">${kpis.volunteerActive} volunteers</span>
@@ -44,10 +44,10 @@ const OpsDashboard = (() => {
         </div>
         <div class="card ${kpis.securityIncidents > 3 ? 'card-accent-red' : ''}">
           <div class="stat-widget">
-            <div class="stat-icon red">🚨</div>
+            <div class="stat-icon red"><i data-lucide="alert-triangle"></i></div>
             <div class="stat-value">${kpis.securityIncidents}</div>
             <div class="stat-label">Security Incidents</div>
-            <span class="stat-change ${kpis.securityIncidents > 3 ? 'negative' : 'positive'}">${kpis.securityIncidents > 3 ? '⚠️ Elevated' : '✅ Normal'}</span>
+            <span class="stat-change ${kpis.securityIncidents > 3 ? 'negative' : 'positive'}">${kpis.securityIncidents > 3 ? '<i data-lucide="alert-triangle" style="width:12px;height:12px;display:inline-block;vertical-align:text-bottom"></i> Elevated' : '<i data-lucide="check-circle" style="width:12px;height:12px;display:inline-block;vertical-align:text-bottom"></i> Normal'}</span>
           </div>
         </div>
       </div>
@@ -56,28 +56,28 @@ const OpsDashboard = (() => {
       <div class="dashboard-grid grid-cols-4" style="margin-bottom:var(--space-xl)">
         <div class="card">
           <div class="stat-widget">
-            <div class="stat-icon purple">⏱️</div>
+            <div class="stat-icon purple"><i data-lucide="clock"></i></div>
             <div class="stat-value">${kpis.avgEntryTime}m</div>
             <div class="stat-label">Avg Entry Time</div>
           </div>
         </div>
         <div class="card">
           <div class="stat-widget">
-            <div class="stat-icon orange">🏥</div>
+            <div class="stat-icon orange"><i data-lucide="heart-pulse"></i></div>
             <div class="stat-value">${kpis.medicalCalls}</div>
             <div class="stat-label">Medical Calls</div>
           </div>
         </div>
         <div class="card">
           <div class="stat-widget">
-            <div class="stat-icon blue">📶</div>
+            <div class="stat-icon blue"><i data-lucide="wifi"></i></div>
             <div class="stat-value">${(kpis.wifiConnections / 1000).toFixed(1)}k</div>
             <div class="stat-label">WiFi Connections</div>
           </div>
         </div>
         <div class="card">
           <div class="stat-widget">
-            <div class="stat-icon gold">⭐</div>
+            <div class="stat-icon gold"><i data-lucide="star"></i></div>
             <div class="stat-value">${kpis.customerSatisfaction}</div>
             <div class="stat-label">Fan Satisfaction</div>
             <span class="stat-change positive">/ 5.0</span>
@@ -90,13 +90,13 @@ const OpsDashboard = (() => {
         <!-- AI Decision Support -->
         <div class="card">
           <div class="card-header">
-            <div class="card-title">🧠 AI Decision Support</div>
+            <div class="card-title"><i data-lucide="brain" style="display:inline-block;vertical-align:text-bottom;width:20px;height:20px"></i> AI Decision Support</div>
             <span class="badge badge-teal">GenAI Powered</span>
           </div>
           <div class="card-body" style="display:flex;flex-direction:column;gap:var(--space-md)">
             ${insights.map(insight => `
               <div class="alert-card alert-${insight.severity === 'danger' ? 'danger' : insight.severity === 'warning' ? 'warning' : insight.severity === 'success' ? 'success' : 'info'}">
-                <div class="alert-icon">${insight.severity === 'danger' ? '🔴' : insight.severity === 'warning' ? '🟡' : insight.severity === 'success' ? '🟢' : '🔵'}</div>
+                <div class="alert-icon"><i data-lucide="${insight.severity === 'danger' ? 'alert-octagon' : insight.severity === 'warning' ? 'alert-triangle' : insight.severity === 'success' ? 'check-circle' : 'info'}"></i></div>
                 <div class="alert-content">
                   <div class="alert-title">${insight.title}</div>
                   <div class="alert-message">${insight.message}</div>
@@ -115,7 +115,7 @@ const OpsDashboard = (() => {
           <!-- Incident Timeline -->
           <div class="card">
             <div class="card-header">
-              <div class="card-title">📋 Live Incident Timeline</div>
+              <div class="card-title"><i data-lucide="clipboard-list" style="display:inline-block;vertical-align:text-bottom;width:20px;height:20px"></i> Live Incident Timeline</div>
               <span class="badge badge-green">● LIVE</span>
             </div>
             <div class="card-body">
@@ -152,7 +152,7 @@ const OpsDashboard = (() => {
           <!-- Resource Allocation -->
           <div class="card">
             <div class="card-header">
-              <div class="card-title">📊 Resource Allocation</div>
+              <div class="card-title"><i data-lucide="bar-chart-2" style="display:inline-block;vertical-align:text-bottom;width:20px;height:20px"></i> Resource Allocation</div>
               <span class="badge badge-purple">AI Optimized</span>
             </div>
             <div class="card-body">
@@ -181,6 +181,7 @@ const OpsDashboard = (() => {
         </div>
       </div>
     `;
+    if (window.lucide) lucide.createIcons();
   }
 
   return { init, renderOpsView };
