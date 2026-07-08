@@ -10,6 +10,11 @@ const Router = (() => {
   let routes = {};
   let onChangeCallbacks = [];
 
+  /**
+   * Initializes the router and binds hashchange events.
+   * @param {Object} routeMap - A mapping of view IDs to configuration objects.
+   * @public
+   */
   function init(routeMap) {
     routes = routeMap;
     window.addEventListener('hashchange', handleRoute);
@@ -21,6 +26,12 @@ const Router = (() => {
     navigate(hash, false);
   }
 
+  /**
+   * Navigates to a specific view and triggers module lifecycle events.
+   * @param {string} viewId - The target view ID to display.
+   * @param {boolean} [updateHash=true] - Whether to update the URL hash.
+   * @public
+   */
   function navigate(viewId, updateHash = true) {
     if (currentView === viewId) return;
 

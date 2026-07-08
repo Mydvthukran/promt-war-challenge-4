@@ -6,13 +6,16 @@
 "use strict";
 
 const Transport = (() => {
+  let isInitialized = false;
+
   function init() {
     renderTransportView();
   }
 
   function renderTransportView() {
     const container = document.getElementById('transport-content');
-    if (!container) return;
+    if (!container || isInitialized) return;
+    isInitialized = true;
 
     const transportData = StadiumData.getLiveTransportData();
 

@@ -5,13 +5,16 @@
 "use strict";
 
 const OpsDashboard = (() => {
+  let isInitialized = false;
+
   function init() {
     renderOpsView();
   }
 
   function renderOpsView() {
     const container = document.getElementById('ops-content');
-    if (!container) return;
+    if (!container || isInitialized) return;
+    isInitialized = true;
 
     const kpis = StadiumData.getOperationalKPIs();
     const insights = StadiumData.aiInsights;

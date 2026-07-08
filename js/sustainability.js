@@ -6,13 +6,16 @@
 "use strict";
 
 const Sustainability = (() => {
+  let isInitialized = false;
+
   function init() {
     renderSustainabilityView();
   }
 
   function renderSustainabilityView() {
     const container = document.getElementById('sustainability-content');
-    if (!container) return;
+    if (!container || isInitialized) return;
+    isInitialized = true;
 
     const data = StadiumData.getLiveSustainabilityData();
 

@@ -6,13 +6,16 @@
 "use strict";
 
 const StadiumMap = (() => {
+  let isInitialized = false;
+
   function init() {
     renderMapView();
   }
 
   function renderMapView() {
     const container = document.getElementById('navigation-content');
-    if (!container) return;
+    if (!container || isInitialized) return;
+    isInitialized = true;
 
     const crowdData = StadiumData.getLiveCrowdData();
 

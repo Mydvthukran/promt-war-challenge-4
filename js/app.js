@@ -53,6 +53,10 @@ const App = (() => {
     ops: { title: 'Operations Center' },
   };
 
+  /**
+   * Initializes the core application, sets up routing, and boots modules.
+   * @public
+   */
   function init() {
     createParticles();
     setupRoleSelection();
@@ -84,6 +88,11 @@ const App = (() => {
     }
   }
 
+  /**
+   * Switches the active UI layout based on the user's role.
+   * @param {string} role - The selected role (e.g., 'fan', 'organizer').
+   * @public
+   */
   function selectRole(role) {
     currentRole = role;
 
@@ -372,6 +381,13 @@ const App = (() => {
     }
   }
 
+  /**
+   * Displays a dynamic toast notification.
+   * @param {string} title - The title of the toast.
+   * @param {string} message - The message content.
+   * @param {string} [type='info'] - The type ('success', 'warning', 'error', 'info').
+   * @public
+   */
   function showToast(title, message, type = 'info') {
     const container = document.getElementById('toast-container');
     if (!container) return;
@@ -400,6 +416,12 @@ const App = (() => {
     }, 5000);
   }
 
+  /**
+   * Safely escapes HTML entities to prevent Cross-Site Scripting (XSS).
+   * @param {string} str - The unescaped input string.
+   * @returns {string} The escaped, safe HTML string.
+   * @public
+   */
   function escapeHtml(str) {
     const div = document.createElement('div');
     div.textContent = str;
