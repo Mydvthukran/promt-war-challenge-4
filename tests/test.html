@@ -300,7 +300,7 @@
       assert(response.length > 0, 'AI returns non-empty fallback for unknown input', g);
 
       // Test that malicious HTML is escaped by App.escapeHtml (used by markdown parser)
-      const xssPayload = '<script>alert("xss")</script>';
+      const xssPayload = '<script>alert("xss")<\\/script>';
       const escaped = App.escapeHtml(xssPayload);
       assert(escaped.includes('&lt;script&gt;'), 'App.escapeHtml correctly escapes HTML tags', g);
     }
