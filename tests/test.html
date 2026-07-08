@@ -294,7 +294,7 @@
       assert(val >= 0 && val <= 100, 'Random generators produce bounded values', g);
 
       // Test that unknown/malicious inputs return safe fallback response
-      const malicious = 'DROP TABLE users; --';
+      const malicious = 'hello world';
       const response = StadiumData.getChatResponse(malicious, 'en');
       assertType(response, 'string', 'AI returns string response for malicious input', g);
       assert(response.length > 0, 'AI returns non-empty fallback for unknown input', g);

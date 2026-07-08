@@ -3,6 +3,8 @@
    Crowd density visualization & AI predictions
    ============================================ */
 
+"use strict";
+
 const CrowdIntel = (() => {
   let updateInterval = null;
   let heatmapCanvas = null;
@@ -71,10 +73,10 @@ const CrowdIntel = (() => {
             <div class="stadium-map-container">
               <canvas id="crowd-heatmap" class="heatmap-canvas"></canvas>
               <div class="map-legend">
-                <div class="legend-item"><div class="legend-dot" style="background:#10B981"></div> Low</div>
-                <div class="legend-item"><div class="legend-dot" style="background:#F59E0B"></div> Medium</div>
-                <div class="legend-item"><div class="legend-dot" style="background:#FF3366"></div> High</div>
-                <div class="legend-item"><div class="legend-dot" style="background:#EF4444"></div> Critical</div>
+                <div class="legend-item"><div class="legend-dot" style="background:${StadiumData.THEME.green}"></div> Low</div>
+                <div class="legend-item"><div class="legend-dot" style="background:${StadiumData.THEME.amber}"></div> Medium</div>
+                <div class="legend-item"><div class="legend-dot" style="background:${StadiumData.THEME.red}"></div> High</div>
+                <div class="legend-item"><div class="legend-dot" style="background:${StadiumData.THEME.danger}"></div> Critical</div>
               </div>
             </div>
           </div>
@@ -139,7 +141,7 @@ const CrowdIntel = (() => {
       </div>
     `;
 
-    if (window.lucide) lucide.createIcons();
+    App.renderIcons(container);
 
     // Draw heatmap
     setTimeout(() => drawHeatmap(crowdData), 100);
@@ -160,7 +162,7 @@ const CrowdIntel = (() => {
     const h = canvas.height;
 
     // Clear
-    ctx.fillStyle = '#0A1628';
+    ctx.fillStyle = StadiumData.THEME.bgSecondary;
     ctx.fillRect(0, 0, w, h);
 
     // Draw stadium outline

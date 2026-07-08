@@ -3,6 +3,8 @@
    Real-time transport status & AI recommendations
    ============================================ */
 
+"use strict";
+
 const Transport = (() => {
   function init() {
     renderTransportView();
@@ -80,7 +82,7 @@ const Transport = (() => {
                 const carbon = (t.carbonPerKm * 12).toFixed(1);
                 const maxCarbon = 2.6;
                 const pct = Math.max(5, (carbon / maxCarbon) * 100);
-                const barColor = carbon == 0 ? '#10B981' : carbon < 1 ? '#00D4AA' : carbon < 2 ? '#F59E0B' : '#FF3366';
+                const barColor = carbon == 0 ? StadiumData.THEME.green : carbon < 1 ? StadiumData.THEME.teal : carbon < 2 ? StadiumData.THEME.amber : StadiumData.THEME.red;
                 return `
                   <div class="carbon-bar-row">
                     <div class="carbon-bar-label">${t.icon} ${t.name.split(' ')[0]}</div>
@@ -107,7 +109,7 @@ const Transport = (() => {
             <div style="display:flex;flex-direction:column;gap:var(--space-lg)">
               ${['Lot A (North)', 'Lot B (East)', 'Lot C (South)', 'Lot D (VIP)'].map((lot, i) => {
                 const fill = [87, 94, 62, 45][i];
-                const color = fill > 90 ? '#EF4444' : fill > 75 ? '#F59E0B' : '#10B981';
+                const color = fill > 90 ? StadiumData.THEME.danger : fill > 75 ? StadiumData.THEME.amber : StadiumData.THEME.green;
                 return `
                   <div>
                     <div style="display:flex;justify-content:space-between;margin-bottom:var(--space-xs)">
@@ -134,7 +136,7 @@ const Transport = (() => {
         </div>
       </div>
     `;
-    if (window.lucide) lucide.createIcons();
+    App.renderIcons(container);
   }
 
   return { init, renderTransportView };

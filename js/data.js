@@ -1,9 +1,22 @@
 /* ============================================
-   StadiumAI 2026 — Data Module
-   Simulated real-time data generators
+   StadiumAI 2026 — Data & Mock Backend
    ============================================ */
 
+"use strict";
+
 const StadiumData = (() => {
+  const THEME = {
+    teal: '#00D4AA',
+    gold: '#FFB800',
+    red: '#FF3366',
+    blue: '#3B82F6',
+    purple: '#A855F7',
+    orange: '#F97316',
+    green: '#10B981',
+    amber: '#F59E0B',
+    danger: '#EF4444',
+    bgSecondary: '#0A1628'
+  };
 
   // ── FIFA World Cup 2026 Venues ──
   const venues = [
@@ -318,6 +331,7 @@ const StadiumData = (() => {
 
   // ── Public API ──
   return {
+    THEME,
     venues,
     matches,
     zones,

@@ -3,6 +3,8 @@
    Multilingual AI assistant
    ============================================ */
 
+"use strict";
+
 const AIChatbot = (() => {
   let isOpen = false;
   let currentLang = 'en';
@@ -103,7 +105,7 @@ const AIChatbot = (() => {
     const bubble = document.createElement('div');
     bubble.className = 'chat-bubble user';
     bubble.innerHTML = `
-      <div>${escapeHtml(text)}</div>
+      <div>${App.escapeHtml(text)}</div>
       <div class="chat-time">${time}</div>
     `;
     container.appendChild(bubble);
@@ -232,7 +234,7 @@ const AIChatbot = (() => {
 
     container.appendChild(wrapper);
     scrollToBottom();
-    if (window.lucide) lucide.createIcons();
+    App.renderIcons(wrapper);
   }
 
   function clearChat() {
@@ -246,12 +248,6 @@ const AIChatbot = (() => {
     if (container) {
       container.scrollTop = container.scrollHeight;
     }
-  }
-
-  function escapeHtml(str) {
-    const div = document.createElement('div');
-    div.textContent = str;
-    return div.innerHTML;
   }
 
   function formatMarkdown(text) {

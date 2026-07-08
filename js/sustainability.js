@@ -3,6 +3,8 @@
    Environmental impact monitoring & AI insights
    ============================================ */
 
+"use strict";
+
 const Sustainability = (() => {
   function init() {
     renderSustainabilityView();
@@ -84,8 +86,8 @@ const Sustainability = (() => {
                         transform="rotate(-90, 80, 80)"/>
                 <defs>
                   <linearGradient id="eco-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" style="stop-color:#10B981"/>
-                    <stop offset="100%" style="stop-color:#00D4AA"/>
+                    <stop offset="0%" style="stop-color:${StadiumData.THEME.green}"/>
+                    <stop offset="100%" style="stop-color:${StadiumData.THEME.teal}"/>
                   </linearGradient>
                 </defs>
               </svg>
@@ -168,7 +170,7 @@ const Sustainability = (() => {
         </div>
       </div>
     `;
-    if (window.lucide) lucide.createIcons();
+    App.renderIcons(container);
   }
 
   return { init, renderSustainabilityView };

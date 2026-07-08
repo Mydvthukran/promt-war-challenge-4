@@ -3,6 +3,8 @@
    Interactive SVG stadium visualization
    ============================================ */
 
+"use strict";
+
 const StadiumMap = (() => {
   function init() {
     renderMapView();
@@ -98,15 +100,15 @@ const StadiumMap = (() => {
         </div>
       </div>
     `;
-    if (window.lucide) lucide.createIcons();
+    App.renderIcons(container);
   }
 
   function generateStadiumSVG(crowdData) {
     const getColor = (density) => {
-      if (density > 90) return '#EF4444';
-      if (density > 75) return '#FF3366';
-      if (density > 50) return '#F59E0B';
-      return '#10B981';
+      if (density > 90) return StadiumData.THEME.danger;
+      if (density > 75) return StadiumData.THEME.red;
+      if (density > 50) return StadiumData.THEME.amber;
+      return StadiumData.THEME.green;
     };
 
     const getOpacity = (density) => (0.3 + (density / 100) * 0.5).toFixed(2);
@@ -118,8 +120,8 @@ const StadiumMap = (() => {
       <svg viewBox="0 0 800 500" class="stadium-svg" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <radialGradient id="pitch-grad" cx="50%" cy="50%">
-            <stop offset="0%" style="stop-color:#00D4AA;stop-opacity:0.15"/>
-            <stop offset="100%" style="stop-color:#00D4AA;stop-opacity:0.03"/>
+            <stop offset="0%" style="stop-color:${StadiumData.THEME.teal};stop-opacity:0.15"/>
+            <stop offset="100%" style="stop-color:${StadiumData.THEME.teal};stop-opacity:0.03"/>
           </radialGradient>
           <filter id="glow">
             <feGaussianBlur stdDeviation="3" result="blur"/>

@@ -2,6 +2,8 @@
    StadiumAI 2026 — Main Application Controller
    ============================================ */
 
+"use strict";
+
 const App = (() => {
   let currentRole = null;
   let clockInterval = null;
@@ -139,7 +141,7 @@ const App = (() => {
     }
 
     navContainer.innerHTML = html;
-    if (window.lucide) lucide.createIcons();
+    App.renderIcons(navContainer);
   }
 
   function initModules() {
@@ -322,7 +324,7 @@ const App = (() => {
         </div>
       </div>
     `;
-    if (window.lucide) lucide.createIcons();
+    App.renderIcons(container);
   }
 
   function startClock() {
@@ -373,7 +375,7 @@ const App = (() => {
       <div class="toast-close" onclick="this.parentElement.classList.add('removing');setTimeout(()=>this.parentElement.remove(),300)"><i data-lucide="x" style="width:14px;height:14px"></i></div>
     `;
     container.appendChild(toast);
-    if (window.lucide) lucide.createIcons({root: toast});
+    App.renderIcons(toast);
 
     // Auto remove after 5 seconds
     setTimeout(() => {
@@ -384,7 +386,19 @@ const App = (() => {
     }, 5000);
   }
 
-  return { init, selectRole, showToast, currentRole: () => currentRole };
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  function renderIcons(rootNode = document.body) {
+    if (window.lucide) {
+      lucide.createIcons({ root: rootNode });
+    }
+  }
+
+  return { init, selectRole, showToast, escapeHtml, renderIcons, currentRole: () => currentRole };
 })();
 
 // Start the application when DOM is ready

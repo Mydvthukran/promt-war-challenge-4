@@ -1,7 +1,8 @@
 /* ============================================
-   StadiumAI 2026 — Operational Intelligence
-   Staff dashboard with AI decision support
+   StadiumAI 2026 — Operations Dashboard
    ============================================ */
+
+"use strict";
 
 const OpsDashboard = (() => {
   function init() {
@@ -181,7 +182,8 @@ const OpsDashboard = (() => {
         </div>
       </div>
     `;
-    if (window.lucide) lucide.createIcons();
+
+    App.renderIcons(container);
   }
 
   return { init, renderOpsView };

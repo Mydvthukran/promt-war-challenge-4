@@ -3,6 +3,8 @@
    Hash-based client-side routing
    ============================================ */
 
+"use strict";
+
 const Router = (() => {
   let currentView = null;
   let routes = {};

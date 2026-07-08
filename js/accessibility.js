@@ -1,7 +1,9 @@
 /* ============================================
    StadiumAI 2026 — Accessibility Hub
-   Accessibility services & inclusive features
+   Services and inclusive routing
    ============================================ */
+
+"use strict";
 
 const Accessibility = (() => {
   function init() {
@@ -134,7 +136,8 @@ const Accessibility = (() => {
         </div>
       </div>
     `;
-    if (window.lucide) lucide.createIcons();
+
+    App.renderIcons(container);
   }
 
   return { init, renderAccessibilityView };
